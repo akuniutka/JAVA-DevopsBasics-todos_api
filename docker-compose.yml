@@ -13,6 +13,7 @@ services:
     image: skillfactoryteam/todos-api:1.0
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/todos
+      - CLIENT_URL
     depends_on:
       - db
     ports:
@@ -20,6 +21,9 @@ services:
 
   client:
     image: skillfactoryteam/vue-todos:1.0
+    environment:
+      - VUE_APP_BACKEND_URL
+      - PORT=8081
     depends_on:
       - api
     ports:

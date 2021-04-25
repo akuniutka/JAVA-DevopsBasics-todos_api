@@ -1,6 +1,7 @@
 package ru.skillfactory.todolist.config;
 
 import java.util.Collections;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -11,6 +12,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 @Configuration
+@Slf4j
 public class CorsConfig {
 
   @Value(value = "${client.url}")
@@ -18,6 +20,7 @@ public class CorsConfig {
 
   @Bean
   public FilterRegistrationBean simpleCorsFilter() {
+    log.info("client.url: " + clientUrl);
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
     CorsConfiguration config = new CorsConfiguration();
     config.setAllowCredentials(true);
