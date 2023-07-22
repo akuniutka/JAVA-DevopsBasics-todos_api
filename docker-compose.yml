@@ -13,6 +13,7 @@ services:
     image: todos-api
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/todos
+      - JAVA_OPTS=-Xms50M -Xmx100M
     depends_on:
       - db
     ports:
