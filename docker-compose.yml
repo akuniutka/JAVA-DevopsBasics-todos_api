@@ -3,8 +3,8 @@ services:
   db:
     image: postgres:13.2-alpine
     environment:
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=pass
+      - POSTGRES_USER=${TODOS_USER}
+      - POSTGRES_PASSWORD=${TODOS_PASSWORD}
       - POSTGRES_DB=todos
     ports:
       - '5433:5432'
@@ -13,6 +13,8 @@ services:
     image: todos-api
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/todos
+      - POSTGRES_USER=${TODOS_USER}
+      - POSTGRES_PASSWORD=${TODOS_PASSWORD}
       - JAVA_OPTS=-Xms50M -Xmx100M
     depends_on:
       - db
